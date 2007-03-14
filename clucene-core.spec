@@ -1,4 +1,3 @@
-#
 Summary:	An indexing and searching API
 Summary(pl.UTF-8):	API do indeksowania i wyszukiwania
 Name:		clucene-core
@@ -9,9 +8,10 @@ Group:		Libraries
 Source0:	http://dl.sourceforge.net/clucene/%{name}-%{version}.tar.bz2
 # Source0-md5:	0ed4f537321065c68ed802be67b25b10
 URL:		http://clucene.sourceforge.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	libstdc++-devel
+BuildRequires:	libtool >= 2:1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,6 +27,7 @@ Summary:	Header files for CLucene library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki CLucene
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libstdc++-devel
 
 %description devel
 Header files for CLucene library.
@@ -73,8 +74,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%{_libdir}/*.la
 %attr(755,root,root) %{_libdir}/*.so.*.*.*
+%{_libdir}/*.la
 
 %files devel
 %defattr(644,root,root,755)
