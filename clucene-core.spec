@@ -2,7 +2,7 @@ Summary:	An indexing and searching API
 Summary(pl.UTF-8):	API do indeksowania i wyszukiwania
 Name:		clucene-core
 Version:	0.9.16a
-Release:	1
+Release:	2
 License:	LGPL/Apache
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/clucene/%{name}-%{version}.tar.bz2
@@ -79,6 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.so
 %{_includedir}/CLucene.h
 %{_includedir}/CLucene
 %{_libdir}/CLucene
