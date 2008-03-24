@@ -74,17 +74,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/*.so.*
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/libclucene.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclucene.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/libclucene.so
+%{_libdir}/libclucene.la
 %{_includedir}/CLucene.h
 %{_includedir}/CLucene
 %{_libdir}/CLucene
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/libclucene.a
