@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	API do indeksowania i wyszukiwania
 Name:		clucene-core
 Version:	0.9.20
 Release:	1
-License:	LGPL/Apache
+License:	LGPL or Apache v2.0
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/clucene/%{name}-%{version}.tar.bz2
 # Source0-md5:	da62da5d23b17fec67f0175481a603b8
@@ -73,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS COPYING ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libclucene.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libclucene.so.0
 
