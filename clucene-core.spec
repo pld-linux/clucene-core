@@ -1,3 +1,4 @@
+# TODO: 0.9.x branch is quite old, build Java Lucene 2.3.2 compatable unstable branch
 Summary:	An indexing and searching API
 Summary(pl.UTF-8):	API do indeksowania i wyszukiwania
 Name:		clucene-core
@@ -5,7 +6,7 @@ Version:	0.9.21b
 Release:	1
 License:	LGPL or Apache v2.0
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/clucene/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/clucene/clucene-core-stable/%{version}/%{name}-%{version}.tar.bz2
 # Source0-md5:	ba1a8f764a2ca19c66ad907dddd88352
 URL:		http://clucene.sourceforge.net/
 BuildRequires:	autoconf >= 2.57
