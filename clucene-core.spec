@@ -1,16 +1,15 @@
-# TODO: 0.9.x branch is quite old, build Java Lucene 2.3.2 compatable unstable branch
 Summary:	An indexing and searching API
 Summary(pl.UTF-8):	API do indeksowania i wyszukiwania
 Name:		clucene-core
-Version:	0.9.21b
+Version:	2.3.3.4
 Release:	1
 License:	LGPL or Apache v2.0
 Group:		Libraries
-Source0:	http://downloads.sourceforge.net/clucene/clucene-core-stable/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	ba1a8f764a2ca19c66ad907dddd88352
+Source0:	http://downloads.sourceforge.net/clucene/%{name}-%{version}.tar.gz
+# Source0-md5:	48d647fbd8ef8889e5a7f422c1bfda94
+Patch0:		%{name}-2.3.3.4-install_contribs_lib.patch
 URL:		http://clucene.sourceforge.net/
-BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake
+BuildRequires:	cmake
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,20 +49,23 @@ Statyczna biblioteka CLucene.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-%configure
+install -d build
+cd build
+%cmake \
+	-DBUILD_STATIC_LIBRARIES=ON \
+	-DBUILD_CONTRIBS=ON \
+	-DBUILD_CONTRIBS_LIB=ON \
+	..
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
@@ -75,17 +77,24 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libclucene.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libclucene.so.0
+%attr(755,root,root) %{_libdir}/libclucene-contribs-lib.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclucene-contribs-lib.so.1
+%attr(755,root,root) %{_libdir}/libclucene-core.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclucene-core.so.1
+%attr(755,root,root) %{_libdir}/libclucene-shared.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libclucene-shared.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libclucene.so
-%{_libdir}/libclucene.la
+%attr(755,root,root) %{_libdir}/libclucene-contribs-lib.so
+%attr(755,root,root) %{_libdir}/libclucene-core.so
+%attr(755,root,root) %{_libdir}/libclucene-shared.so
 %{_includedir}/CLucene.h
 %{_includedir}/CLucene
-%{_libdir}/CLucene
+%{_libdir}/CLuceneConfig.cmake
+%{_pkgconfigdir}/libclucene-core.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libclucene.a
+%{_libdir}/libclucene-core-static.a
+%{_libdir}/libclucene-shared-static.a
