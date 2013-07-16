@@ -1,0 +1,16 @@
+--- clucene-core-2.3.3.4/src/core/libclucene-core.pc.cmake~	2011-03-17 01:21:07.000000000 +0100
++++ clucene-core-2.3.3.4/src/core/libclucene-core.pc.cmake	2013-07-17 00:09:45.329409095 +0200
+@@ -1,11 +1,11 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}/bin
+ libdir=${prefix}/@LIB_DESTINATION@
+-includedir=${prefix}/include:${prefix}/include/CLucene/ext
++includedir=${prefix}/include
+ 
+ Name: libclucene
+ Description: CLucene - a C++ search engine, ported from the popular Apache Lucene
+ Version: @CLUCENE_VERSION_MAJOR@.@CLUCENE_VERSION_MINOR@.@CLUCENE_VERSION_REVISION@.@CLUCENE_VERSION_PATCH@
+ Libs: -L${prefix}/@LIB_DESTINATION@/ -lclucene-core
+-Cflags: -I${prefix}/include -I${prefix}/include/CLucene/ext
++Cflags: -I${prefix}/include
+ ~

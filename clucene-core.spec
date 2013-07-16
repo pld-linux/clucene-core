@@ -2,12 +2,13 @@ Summary:	An indexing and searching API
 Summary(pl.UTF-8):	API do indeksowania i wyszukiwania
 Name:		clucene-core
 Version:	2.3.3.4
-Release:	1
+Release:	2
 License:	LGPL or Apache v2.0
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/clucene/%{name}-%{version}.tar.gz
 # Source0-md5:	48d647fbd8ef8889e5a7f422c1bfda94
 Patch0:		%{name}-2.3.3.4-install_contribs_lib.patch
+Patch1:		remove-boost-headers.patch
 URL:		http://clucene.sourceforge.net/
 BuildRequires:	cmake
 BuildRequires:	libstdc++-devel
@@ -50,6 +51,7 @@ Statyczna biblioteka CLucene.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 install -d build
@@ -67,6 +69,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# remove boost headers, they are not needed nor used here
+%{__rm} -r %{_includedir}/CLucene/ext
 
 %clean
 rm -rf $RPM_BUILD_ROOT
